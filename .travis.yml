@@ -1,18 +1,17 @@
 language: emacs-lisp
-
 env:
   global:
-    - PATH=$HOME/.cask/bin:$PATH
-
+    - PATH=$HOME/.evm/bin:$HOME/.cask/bin:$PATH
+  matrix:
+    - EVM_EMACS=emacs-24.3-travis
+    - EVM_EMACS=emacs-24.4-travis
+    - EVM_EMACS=emacs-24.5-travis
 before_install:
-  - sudo add-apt-repository -y ppa:cassou/emacs
-  - sudo add-apt-repository -y ppa:ubuntu-elisp
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq emacs24
-  - curl -fsSkL https://raw.github.com/cask/cask/master/go | python
-
+  - git clone https://github.com/rejeep/evm $HOME/.evm
+  - git clone https://github.com/cask/cask $HOME/.cask
+  - evm config path /tmp
 install:
+  - evm install $EVM_EMACS --use
   - cask install
-
 script:
   - cask exec ert-runner
