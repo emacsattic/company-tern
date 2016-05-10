@@ -13,6 +13,7 @@
   (let ((candidate "property"))
     (put-text-property 0 1 'isProperty t candidate)
     (put-text-property 0 1 'depth 0 candidate)
+    (put-text-property 0 1 'type "?" candidate)
     (should (s-ends-with-p company-tern-property-marker
                            (company-tern-annotation candidate)))))
 
@@ -20,8 +21,14 @@
   (let ((candidate "other"))
     (put-text-property 0 1 'isProperty json-false candidate)
     (put-text-property 0 1 'depth 0 candidate)
+    (put-text-property 0 1 'type "?" candidate)
     (should-not (s-ends-with-p company-tern-property-marker
                                (company-tern-annotation candidate)))))
+
+(ert-deftest test-company-tern-annotation-null-for-keywords ()
+  (let ((candidate "return"))
+    (put-text-property 0 1 'isKeyword t candidate)
+    (should (null (company-tern-annotation candidate)))))
 
 ;;; Types.
 

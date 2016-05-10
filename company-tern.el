@@ -109,11 +109,9 @@ Use CALLBACK function to display candidates."
 
 (defun company-tern-annotation (candidate)
   "Return type annotation for chosen CANDIDATE."
-  (concat
-   (company-tern-get-type candidate)
-   (if (company-tern-property-p candidate)
-       company-tern-property-marker
-     "")))
+  (--when-let (company-tern-get-type candidate)
+    (concat it (and (company-tern-property-p candidate)
+                    company-tern-property-marker))))
 
 (defun company-tern-get-type (candidate)
   "Analyze CANDIDATE type."
