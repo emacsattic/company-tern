@@ -33,11 +33,22 @@
 (require 'dash-functional)
 (require 's)
 
-(defvar company-tern-property-marker " ○"
-  "String to indicate object own properties.")
+(defgroup company-tern nil
+  "Tern backend for company-mode"
+  :group 'languages
+  :prefix "company-tern-")
 
-(defvar company-tern-meta-as-single-line nil
-  "Trim candidate type information to length of frame width.")
+(defcustom company-tern-property-marker " ○"
+  "This can be a string to indicate an object's own properties or
+  nil to disable property markers."
+  :type '(choice (string :tag "Property suffix")
+                 (const :tag "None" nil))
+  :group 'company-tern)
+
+(defcustom company-tern-meta-as-single-line nil
+  "Trim candidate type information to frame width?"
+  :type 'boolean
+  :group 'company-tern)
 
 (defun company-tern-prefix ()
   "Grab prefix for tern."

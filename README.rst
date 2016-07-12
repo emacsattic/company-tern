@@ -38,12 +38,13 @@ Add ``company-tern`` to allowed ``company-mode`` backends list
 
     (add-to-list 'company-backends 'company-tern)
 
-If you don't like circles after object's own properties consider less
-annoying marker for that purpose.
+If you don't like circles after an object's own properties, consider a
+less annoying marker for that purpose or disable it entirely.
 
 .. code:: lisp
 
-    (setq company-tern-property-marker "")
+    (setq company-tern-property-marker " <p>")
+    (setq company-tern-property-marker nil)
 
 You can trim too long function signatures to the frame width.
 
