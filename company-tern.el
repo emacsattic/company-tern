@@ -39,8 +39,8 @@
   :prefix "company-tern-")
 
 (defcustom company-tern-property-marker " ○"
-  "This can be a string to indicate an object's own properties or
-  nil to disable property markers."
+  "A string to indicate an object's own properties.
+This also can be nil to disable property markers."
   :type '(choice (string :tag "Property suffix")
                  (const :tag "None" nil))
   :group 'company-tern)
